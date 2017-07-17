@@ -94,12 +94,16 @@ var fileData = {};
 		name = $("#friend-name").val();
 		name = name.trim();
 		
-		rollNumber = $("#friend-roll-number").val();
-		rollNumber = rollNumber.toUpperCase();
-		rollNumber = rollNumber.trim();
-		$("#friend-roll-number").val(rollNumber);
-		if(name != '' && rollNumber !='')
+		var rollNumber_tmp = $("#friend-roll-number").val();
+		rollNumber_tmp = parseInt(rollNumber_tmp);
+		
+
+		if(name != '' && !isNaN(rollNumber_tmp) && ((rollNumber_tmp >= 1 && rollNumber_tmp <= 132) || (rollNumber_tmp >= 501 && rollNumber_tmp <= 521))  )
 		{
+			$("#friend-roll-number").val(rollNumber_tmp);
+			
+			rollNumber = "MT2015" + (rollNumber_tmp < 100 ? "0" + rollNumber_tmp : rollNumber_tmp);
+			
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(showPosition);
 			} else { 
@@ -110,7 +114,7 @@ var fileData = {};
 		}
 		else {
 				resetAlerts();
-				$('.warning-text').html("Please enter your name and roll number");
+				$('.warning-text').html("Please enter valid name and roll number");
 				$('.alert-warning').show();
 		}
 	}
