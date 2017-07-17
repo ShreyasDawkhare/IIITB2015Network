@@ -36,6 +36,7 @@ var fileData = {};
         showTooltip: true,
         showInfoWindow: true,
         useMapTypeControl: true,
+		enableScrollWheel: true,
         maps: {
           // Your custom mapTypeId holding custom map styles.
           styledMap: {
@@ -78,6 +79,8 @@ var fileData = {};
                 //do something with server's response
                 indata = JSON.parse(indata);
 				fileData = indata;
+				console.log(indata);
+				$("#friend-count").html(Object.keys(indata.data).length);
 				drawMap(indata.data);				
             }
         });
