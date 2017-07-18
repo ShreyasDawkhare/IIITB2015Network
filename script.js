@@ -110,12 +110,14 @@ var fileData = {};
 				resetAlerts();
 				$('.warning-text').html("Geolocation is not supported by this browser.");
 				$('.alert-warning').show();
+				setTimeout(function() { resetAlerts(); }, 3000);
 			}
 		}
 		else {
 				resetAlerts();
 				$('.warning-text').html("Please enter valid name and roll number");
 				$('.alert-warning').show();
+				setTimeout(function() { resetAlerts(); }, 3000);
 		}
 	}
 
